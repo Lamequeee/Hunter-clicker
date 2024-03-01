@@ -9,17 +9,22 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textSuzhi;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textNen;
+	
+	Double Nen = 0.0;
+	int Suzhi = 0;
 
 	/**
 	 * Launch the application.
@@ -51,10 +56,25 @@ public class TelaPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnClicker = new JButton("Clique");
+		btnClicker.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Nen++;
+				Nen += Suzhi;
+				textNen.setText(""+Nen);
+			}
+		});
 		btnClicker.setBounds(137, 284, 89, 63);
 		contentPane.add(btnClicker);
 		
 		JButton btnZushi = new JButton("Zushi");
+		btnZushi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Suzhi++;
+				textSuzhi.setText(""+Suzhi);				
+			}
+		});
 		btnZushi.setToolTipText("Recebera + 1 de Nen");
 		btnZushi.setBounds(440, 58, 89, 23);
 		contentPane.add(btnZushi);
@@ -108,11 +128,11 @@ public class TelaPrincipal extends JFrame {
 		lblNewLabel_5.setBounds(539, 408, 60, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(599, 59, 70, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textSuzhi = new JTextField();
+		textSuzhi.setEditable(false);
+		textSuzhi.setBounds(599, 59, 70, 20);
+		contentPane.add(textSuzhi);
+		textSuzhi.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
@@ -148,11 +168,11 @@ public class TelaPrincipal extends JFrame {
 		lblNewLabel_6.setBounds(485, 11, 46, 14);
 		contentPane.add(lblNewLabel_6);
 		
-		textField_6 = new JTextField();
-		textField_6.setEditable(false);
-		textField_6.setBounds(539, 8, 130, 20);
-		contentPane.add(textField_6);
-		textField_6.setColumns(10);
+		textNen = new JTextField();
+		textNen.setEditable(false);
+		textNen.setBounds(539, 8, 130, 20);
+		contentPane.add(textNen);
+		textNen.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
 		lblNewLabel_7.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/Nen.png")));
