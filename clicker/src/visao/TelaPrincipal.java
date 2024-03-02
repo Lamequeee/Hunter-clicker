@@ -11,20 +11,28 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textSuzhi;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textIkalgo;
+	private JTextField textWing;
+	private JTextField textLeorio;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textNen;
 	
 	Double Nen = 0.0;
 	int Suzhi = 0;
+	int Ikalgoc = 0;
+	Double Ikalgo = 0.50;
+	int Wingc = 0;
+	Double Wing = 0.80;
+	
 
 	/**
 	 * Launch the application.
@@ -61,7 +69,9 @@ public class TelaPrincipal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Nen++;
 				Nen += Suzhi;
-				textNen.setText(""+Nen);
+				//Nen *= Ikalgo;
+				//Nen *= Wing;
+				textNen.setText("" + Nen);
 			}
 		});
 		btnClicker.setBounds(137, 284, 89, 63);
@@ -80,12 +90,30 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(btnZushi);
 		
 		JButton btnIkalgo = new JButton("Ikalgo");
+		btnIkalgo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Ikalgoc++;
+				textIkalgo.setText(""+Ikalgoc);
+			}
+		});
 		btnIkalgo.setToolTipText("Recebera + * 0,5  de Nen");
 		btnIkalgo.setBounds(440, 121, 89, 23);
 		contentPane.add(btnIkalgo);
 		
 		JButton btnWing = new JButton("Wing");
-		btnWing.setToolTipText("Recebera + * 2  de Nen");
+		btnWing.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnWing.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Wingc++;
+				textWing.setText(""+Wingc);
+			}
+		});
+		btnWing.setToolTipText("Recebera + * 0.80  de Nen");
 		btnWing.setBounds(440, 180, 89, 23);
 		contentPane.add(btnWing);
 		
@@ -134,23 +162,23 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(textSuzhi);
 		textSuzhi.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(599, 122, 70, 20);
-		contentPane.add(textField_1);
+		textIkalgo = new JTextField();
+		textIkalgo.setEditable(false);
+		textIkalgo.setColumns(10);
+		textIkalgo.setBounds(599, 122, 70, 20);
+		contentPane.add(textIkalgo);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(599, 181, 70, 20);
-		contentPane.add(textField_2);
+		textWing = new JTextField();
+		textWing.setEditable(false);
+		textWing.setColumns(10);
+		textWing.setBounds(599, 181, 70, 20);
+		contentPane.add(textWing);
 		
-		textField_3 = new JTextField();
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(599, 252, 70, 20);
-		contentPane.add(textField_3);
+		textLeorio = new JTextField();
+		textLeorio.setEditable(false);
+		textLeorio.setColumns(10);
+		textLeorio.setBounds(599, 252, 70, 20);
+		contentPane.add(textLeorio);
 		
 		textField_4 = new JTextField();
 		textField_4.setEditable(false);
