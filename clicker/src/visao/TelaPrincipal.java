@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class TelaPrincipal extends JFrame {
 
@@ -26,13 +27,20 @@ public class TelaPrincipal extends JFrame {
 	private JTextField textField_5;
 	private JTextField textNen;
 	
+	//variaveis
 	Double Nen = 0.0;
 	int Suzhi = 0;
-	int Ikalgoc = 0;
 	Double Ikalgo = 0.50;
-	int Wingc = 0;
 	Double Wing = 0.80;
 	
+	//variaveis para Textfield contar corretamente
+	int Wingc = 0;
+	int Ikalgoc = 0;
+	
+	//totais para as somas finais
+	Double Ikalgototal = 0.0;
+	Double WingTotal = 0.0;
+	private JTextField textCrono;
 
 	/**
 	 * Launch the application.
@@ -69,9 +77,23 @@ public class TelaPrincipal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Nen++;
 				Nen += Suzhi;
-				//Nen *= Ikalgo;
-				//Nen *= Wing;
-				textNen.setText("" + Nen);
+				
+				//SE o contador tiver mais q uma unidade, a variavel IKALGO começara a funcionar, somando o valor ( 0.50 ) a cada unidade comprada
+				if(Ikalgoc>=1) {
+					Ikalgototal = Ikalgo * Ikalgoc;
+				}
+				Nen += Ikalgototal;
+				
+				//SE o contador tiver mais q uma unidade, a variavel WING começara a funcionar, somando o valor ( 0.80 ) a cada unidade comprada
+				if(Wingc>=1) {
+					WingTotal = Wing * Wingc;
+					
+				Nen += WingTotal;
+				}
+				
+								
+				//converti para string a variavel Nen e o .format foi para fomatar e deixar apenas 2 casas decimais após virgula ( %2.f )
+				textNen.setText(String.valueOf(Nen).format("%.2f", Nen));
 			}
 		});
 		btnClicker.setBounds(137, 284, 89, 63);
@@ -206,5 +228,12 @@ public class TelaPrincipal extends JFrame {
 		lblNewLabel_7.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/Nen.png")));
 		lblNewLabel_7.setBounds(41, 28, 294, 224);
 		contentPane.add(lblNewLabel_7);
+		
+		textCrono = new JTextField();
+		textCrono.setEditable(false);
+		textCrono.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textCrono.setBounds(373, 252, 60, 20);
+		contentPane.add(textCrono);
+		textCrono.setColumns(10);
 	}
 }
