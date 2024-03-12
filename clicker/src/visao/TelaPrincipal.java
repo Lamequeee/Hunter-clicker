@@ -2,6 +2,7 @@ package visao;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,10 +12,12 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.DecimalFormat;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class TelaPrincipal extends JFrame {
 
@@ -26,6 +29,9 @@ public class TelaPrincipal extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textNen;
+	private Timer tm;
+	private int contador = 0;
+	private boolean rodando = false;
 	
 	//variaveis
 	Double Nen = 0.0;
@@ -42,6 +48,9 @@ public class TelaPrincipal extends JFrame {
 	Double WingTotal = 0.0;
 	private JTextField textCrono;
 
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -57,10 +66,14 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 	}
-
-	/**
+			
+		/**
 	 * Create the frame.
 	 */
+	
+	Timer timer = new Timer();
+	
+	
 	public TelaPrincipal() {
 		setTitle("Tela principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,6 +109,8 @@ public class TelaPrincipal extends JFrame {
 				textNen.setText(String.valueOf(Nen).format("%.2f", Nen));
 			}
 		});
+		
+		
 		btnClicker.setBounds(137, 284, 89, 63);
 		contentPane.add(btnClicker);
 		
@@ -139,7 +154,37 @@ public class TelaPrincipal extends JFrame {
 		btnWing.setBounds(440, 180, 89, 23);
 		contentPane.add(btnWing);
 		
+		
+		
 		JButton btnLeorio = new JButton("Leorio");
+		btnLeorio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
+		btnLeorio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!rodando) {
+					
+				
+				tm = new Timer();
+				tm.scheduleAtFixedRate(new TimerTask(){
+					@Override
+					public void run() {
+						contador++;
+						int seg = contador % 60;
+						int min = contador / 60;
+						min %=60;
+						textCrono.setText(String.format("%02d:%02d", min, seg));
+						}
+					}, 1000,1000);
+				}
+			}
+		}
+		);
+		
 		btnLeorio.setToolTipText("Recebera + 1000 por minuto de Nen");
 		btnLeorio.setBounds(440, 251, 89, 23);
 		contentPane.add(btnLeorio);
@@ -229,7 +274,15 @@ public class TelaPrincipal extends JFrame {
 		lblNewLabel_7.setBounds(41, 28, 294, 224);
 		contentPane.add(lblNewLabel_7);
 		
-		textCrono = new JTextField();
+		
+		
+		textCrono = new JTextField("00:00:00");
+		textCrono.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				}
+			});
 		textCrono.setEditable(false);
 		textCrono.setFont(new Font("Tahoma", Font.BOLD, 16));
 		textCrono.setBounds(373, 252, 60, 20);
