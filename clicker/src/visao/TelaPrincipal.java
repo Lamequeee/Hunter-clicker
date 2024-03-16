@@ -38,14 +38,17 @@ public class TelaPrincipal extends JFrame {
 	int Suzhi = 0;
 	Double Ikalgo = 0.50;
 	Double Wing = 0.80;
+	Double Leorio = 1000.00;
 	
 	//variaveis para Textfield contar corretamente
 	int Wingc = 0;
 	int Ikalgoc = 0;
+	int Leorioc = 0;
 	
 	//totais para as somas finais
 	Double Ikalgototal = 0.0;
 	Double WingTotal = 0.0;
+	Double LeorioTotal = 0.0;
 	private JTextField textCrono;
 
 	
@@ -94,8 +97,10 @@ public class TelaPrincipal extends JFrame {
 				//SE o contador tiver mais q uma unidade, a variavel IKALGO começara a funcionar, somando o valor ( 0.50 ) a cada unidade comprada
 				if(Ikalgoc>=1) {
 					Ikalgototal = Ikalgo * Ikalgoc;
+					
+					Nen += Ikalgototal;
 				}
-				Nen += Ikalgototal;
+				
 				
 				//SE o contador tiver mais q uma unidade, a variavel WING começara a funcionar, somando o valor ( 0.80 ) a cada unidade comprada
 				if(Wingc>=1) {
@@ -166,20 +171,28 @@ public class TelaPrincipal extends JFrame {
 		
 		btnLeorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Leorioc++;
+				textLeorio.setText(""+Leorioc);
 				if(!rodando) {
-					
-				
+					 rodando = true; 
 				tm = new Timer();
 				tm.scheduleAtFixedRate(new TimerTask(){
 					@Override
 					public void run() {
-						contador++;
-						int seg = contador % 60;
-						int min = contador / 60;
-						min %=60;
-						textCrono.setText(String.format("%02d:%02d", min, seg));
+						contador++; //conta os segundos
+						
+						if(contador == 60) {
+							contador = 0; // Esse if faz o cronometro reinicar quando chegar aos 1 MINUTO
+							Nen += 1000;
+							 textNen.setText(String.valueOf(Nen)); // Atualiza automaticamente o valor de textNen
 						}
-					}, 1000,1000);
+						
+						int seg = contador % 60; //faz a contagem de 0 a 59 segundos
+						int min = contador / 60; // faz a contagem de 0 a 59 minutos
+						min %=60;
+						textCrono.setText(String.format("%02d:%02d", min, seg)); //text para mostrar o tempo do cronometro
+						}
+					}, 1000,1000); //tempo para cada segundo ( 1 milisegundos = 1 segundo )
 				}
 			}
 		}
