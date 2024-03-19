@@ -26,12 +26,16 @@ public class TelaPrincipal extends JFrame {
 	private JTextField textIkalgo;
 	private JTextField textWing;
 	private JTextField textLeorio;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField textCheetu;
+	private JTextField textKnov;
 	private JTextField textNen;
 	private Timer tm;
-	private int contador = 0;
-	private boolean rodando = false;
+	private int contadorLeorio = 0;
+	private int contadorCheetu = 0;
+	private int contadorKnov = 0;
+	private boolean rodandoLeo = false;
+	private boolean rodandoChe = false;
+	private boolean rodandoKnov = false;
 	
 	//variaveis
 	Double Nen = 0.0;
@@ -39,17 +43,20 @@ public class TelaPrincipal extends JFrame {
 	Double Ikalgo = 0.50;
 	Double Wing = 0.80;
 	Double Leorio = 1000.00;
-	
+	Double Cheetu = 10000.00;
+	Double Knov = 50000.00;
 	//variaveis para Textfield contar corretamente
 	int Wingc = 0;
 	int Ikalgoc = 0;
 	int Leorioc = 0;
+	int Cheetuc = 0;
+	int Knovc = 0;
 	
 	//totais para as somas finais
 	Double Ikalgototal = 0.0;
 	Double WingTotal = 0.0;
 	Double LeorioTotal = 0.0;
-	private JTextField textCrono;
+	private JTextField textCronoLeorio;
 
 	
 	
@@ -75,6 +82,8 @@ public class TelaPrincipal extends JFrame {
 	 */
 	
 	Timer timer = new Timer();
+		private JTextField textCronoCheetu;
+		private JTextField textCronoKnov;
 	
 	
 	public TelaPrincipal() {
@@ -173,24 +182,24 @@ public class TelaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Leorioc++;
 				textLeorio.setText(""+Leorioc);
-				if(!rodando) {
-					 rodando = true; 
+				if(!rodandoLeo) {
+					 rodandoLeo = true; 
 				tm = new Timer();
 				tm.scheduleAtFixedRate(new TimerTask(){
 					@Override
 					public void run() {
-						contador++; //conta os segundos
+						contadorLeorio++; //conta os segundos
 						
-						if(contador == 60) {
-							contador = 0; // Esse if faz o cronometro reinicar quando chegar aos 1 MINUTO
+						if(contadorLeorio == 60) {
+							contadorLeorio = 0; // Esse if faz o cronometro reinicar quando chegar aos 1 MINUTO
 							Nen += 1000;
 							 textNen.setText(String.valueOf(Nen)); // Atualiza automaticamente o valor de textNen
 						}
 						
-						int seg = contador % 60; //faz a contagem de 0 a 59 segundos
-						int min = contador / 60; // faz a contagem de 0 a 59 minutos
+						int seg = contadorLeorio % 60; //faz a contagem de 0 a 59 segundos
+						int min = contadorLeorio / 60; // faz a contagem de 0 a 59 minutos
 						min %=60;
-						textCrono.setText(String.format("%02d:%02d", min, seg)); //text para mostrar o tempo do cronometro
+						textCronoLeorio.setText(String.format("%02d:%02d", min, seg)); //text para mostrar o tempo do cronometro
 						}
 					}, 1000,1000); //tempo para cada segundo ( 1 milisegundos = 1 segundo )
 				}
@@ -203,14 +212,39 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(btnLeorio);
 		
 		JButton btnCheetu = new JButton("Cheetu");
+		btnCheetu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Cheetuc++;
+				textCheetu.setText(""+Cheetuc);
+				if(!rodandoChe) {
+					rodandoChe = true; 
+				tm = new Timer();
+				tm.scheduleAtFixedRate(new TimerTask(){
+					@Override
+					public void run() {
+						contadorCheetu++; //conta os segundos
+						
+						if(contadorCheetu == 60) {
+							contadorCheetu = 0; // Esse if faz o cronometro reinicar quando chegar aos 1 MINUTO
+							Nen += 10000;
+							 textNen.setText(String.valueOf(Nen)); // Atualiza automaticamente o valor de textNen
+						}
+						
+						int seg = contadorCheetu % 60; //faz a contagem de 0 a 59 segundos
+						int min = contadorCheetu / 60; // faz a contagem de 0 a 59 minutos
+						min %=60;
+						textCronoCheetu.setText(String.format("%02d:%02d", min, seg)); //text para mostrar o tempo do cronometro
+						}
+					}, 1000,1000); //tempo para cada segundo ( 1 milisegundos = 1 segundo )
+				}
+			}
+		});
+		
+		
 		btnCheetu.setToolTipText("Recebera + 10000 por minuto de Nen");
 		btnCheetu.setBounds(440, 327, 89, 23);
 		contentPane.add(btnCheetu);
 		
-		JButton btnKnov = new JButton("Knov");
-		btnKnov.setToolTipText("Recebera + 50000 por dois minutos  de Nen");
-		btnKnov.setBounds(440, 404, 89, 23);
-		contentPane.add(btnKnov);
 		
 		JLabel lblNewLabel = new JLabel("Quantidade:");
 		lblNewLabel.setBounds(539, 62, 60, 14);
@@ -260,17 +294,17 @@ public class TelaPrincipal extends JFrame {
 		textLeorio.setBounds(599, 252, 70, 20);
 		contentPane.add(textLeorio);
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		textField_4.setColumns(10);
-		textField_4.setBounds(599, 328, 70, 20);
-		contentPane.add(textField_4);
+		textCheetu = new JTextField();
+		textCheetu.setEditable(false);
+		textCheetu.setColumns(10);
+		textCheetu.setBounds(599, 328, 70, 20);
+		contentPane.add(textCheetu);
 		
-		textField_5 = new JTextField();
-		textField_5.setEditable(false);
-		textField_5.setColumns(10);
-		textField_5.setBounds(599, 405, 70, 20);
-		contentPane.add(textField_5);
+		textKnov = new JTextField();
+		textKnov.setEditable(false);
+		textKnov.setColumns(10);
+		textKnov.setBounds(599, 405, 70, 20);
+		contentPane.add(textKnov);
 		
 		JLabel lblNewLabel_6 = new JLabel("Nen:");
 		lblNewLabel_6.setBounds(485, 11, 46, 14);
@@ -289,17 +323,63 @@ public class TelaPrincipal extends JFrame {
 		
 		
 		
-		textCrono = new JTextField("00:00:00");
-		textCrono.addActionListener(new ActionListener() {
+		textCronoLeorio = new JTextField("00:00");
+		textCronoLeorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
 				}
 			});
-		textCrono.setEditable(false);
-		textCrono.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textCrono.setBounds(373, 252, 60, 20);
-		contentPane.add(textCrono);
-		textCrono.setColumns(10);
+		textCronoLeorio.setEditable(false);
+		textCronoLeorio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textCronoLeorio.setBounds(373, 252, 60, 20);
+		contentPane.add(textCronoLeorio);
+		textCronoLeorio.setColumns(10);
+		
+		textCronoCheetu = new JTextField("00:00");
+		textCronoCheetu.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textCronoCheetu.setEditable(false);
+		textCronoCheetu.setColumns(10);
+		textCronoCheetu.setBounds(370, 328, 60, 20);
+		contentPane.add(textCronoCheetu);
+		
+		textCronoKnov = new JTextField("00:00");
+		textCronoKnov.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textCronoKnov.setEditable(false);
+		textCronoKnov.setColumns(10);
+		textCronoKnov.setBounds(370, 405, 60, 20);
+		contentPane.add(textCronoKnov);
+		
+		JButton btnKnov = new JButton("Knov");
+		btnKnov.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Knovc++;
+				textKnov.setText(""+Knovc);
+				if(!rodandoKnov) {
+					rodandoKnov = true; 
+				tm = new Timer();
+				tm.scheduleAtFixedRate(new TimerTask(){
+					@Override
+					public void run() {
+						contadorKnov++; //conta os segundos
+						
+						if(contadorKnov == 60) {
+							contadorKnov = 0; // Esse if faz o cronometro reinicar quando chegar aos 1 MINUTO
+							Nen += 50000;
+							 textNen.setText(String.valueOf(Nen)); // Atualiza automaticamente o valor de textNen
+						}
+						
+						int seg = contadorKnov % 60; //faz a contagem de 0 a 59 segundos
+						int min = contadorKnov / 60; // faz a contagem de 0 a 59 minutos
+						min %=60;
+						textCronoKnov.setText(String.format("%02d:%02d", min, seg)); //text para mostrar o tempo do cronometro
+						}
+					}, 1000,1000); //tempo para cada segundo ( 1 milisegundos = 1 segundo )
+				}
+			}
+		});
+		btnKnov.setToolTipText("Recebera + 50000 por minuto de Nen");
+		btnKnov.setBounds(440, 404, 89, 23);
+		contentPane.add(btnKnov);
 	}
 }
