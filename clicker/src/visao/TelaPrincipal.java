@@ -21,6 +21,8 @@ import java.util.TimerTask;
 
 public class TelaPrincipal extends JFrame {
 
+	TelaErro enviatexto;
+	
 	private JPanel contentPane;
 	private JTextField textSuzhi;
 	private JTextField textIkalgo;
@@ -132,8 +134,17 @@ public class TelaPrincipal extends JFrame {
 		btnZushi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Suzhi++;
-				textSuzhi.setText(""+Suzhi);				
+					if(Nen<10) {
+					enviatexto = new TelaErro();
+					enviatexto.setVisible(true);
+					enviatexto.recebe(textNen.getText());
+				}else {
+					Suzhi++;
+					textSuzhi.setText(""+Suzhi);
+					enviatexto.setVisible(true);
+					enviatexto.setState(TelaErro.NORMAL);
+					enviatexto.recebe(textNen.getText());
+				}
 			}
 		});
 		btnZushi.setToolTipText("Recebera + 1 de Nen");
