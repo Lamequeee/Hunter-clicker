@@ -440,5 +440,35 @@ public class TelaPrincipal extends JFrame {
 		btnKnov.setToolTipText("Recebera + 50000 por minuto de Nen");
 		btnKnov.setBounds(440, 404, 89, 23);
 		contentPane.add(btnKnov);
+		
+		JLabel lblNewLabel_8 = new JLabel("Valor: 10!");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblNewLabel_8.setBounds(440, 80, 89, 14);
+		contentPane.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_8_1 = new JLabel("Valor: 150!");
+		lblNewLabel_8_1.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblNewLabel_8_1.setBounds(440, 142, 89, 14);
+		contentPane.add(lblNewLabel_8_1);
+		
+		JLabel lblNewLabel_8_1_1 = new JLabel("Valor: 500!");
+		lblNewLabel_8_1_1.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblNewLabel_8_1_1.setBounds(440, 201, 89, 14);
+		contentPane.add(lblNewLabel_8_1_1);
+		
+		JLabel lblNewLabel_8_1_2 = new JLabel("Valor: 1000!");
+		lblNewLabel_8_1_2.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblNewLabel_8_1_2.setBounds(440, 273, 89, 14);
+		contentPane.add(lblNewLabel_8_1_2);
+		
+		JLabel lblNewLabel_8_1_3 = new JLabel("Valor: 100000!");
+		lblNewLabel_8_1_3.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblNewLabel_8_1_3.setBounds(440, 349, 89, 14);
+		contentPane.add(lblNewLabel_8_1_3);
+		
+		JLabel lblNewLabel_8_1_4 = new JLabel("Valor: 500000!");
+		lblNewLabel_8_1_4.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblNewLabel_8_1_4.setBounds(440, 427, 89, 14);
+		contentPane.add(lblNewLabel_8_1_4);
 	}
 }
