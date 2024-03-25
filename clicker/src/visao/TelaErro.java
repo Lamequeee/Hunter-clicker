@@ -72,9 +72,9 @@ public class TelaErro extends JFrame {
 		lblVocTem.setBounds(21, 147, 96, 28);
 		contentPane.add(lblVocTem);
 		
-		JLabel lblDeNen = new JLabel("de Nen, é necessario 10!");
+		JLabel lblDeNen = new JLabel("de Nen, não é o valor");
 		lblDeNen.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblDeNen.setBounds(175, 147, 226, 28);
+		lblDeNen.setBounds(183, 147, 226, 28);
 		contentPane.add(lblDeNen);
 		
 		textPassar = new JTextField();
@@ -82,9 +82,14 @@ public class TelaErro extends JFrame {
 		textPassar.setFont(new Font("Tahoma", Font.BOLD, 18));
 		textPassar.setForeground(new Color(0, 0, 0));
 		textPassar.setEditable(false);
-		textPassar.setBounds(112, 147, 61, 28);
+		textPassar.setBounds(115, 147, 61, 28);
 		contentPane.add(textPassar);
 		textPassar.setColumns(10);
+		
+		JLabel lblNecessario = new JLabel("necessario!");
+		lblNecessario.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNecessario.setBounds(167, 185, 109, 28);
+		contentPane.add(lblNecessario);
 		
 		
 		//----------------------CONFIGURAÇÃO PARA NÃO TER BARRA SUPERIOR ( TITULO )----------------------

@@ -46,7 +46,7 @@ public class TelaPrincipal extends JFrame {
 	Double Wing = 0.80;
 	Double Leorio = 1000.00;
 	Double Cheetu = 10000.00;
-	Double Knov = 50000.00;
+	Double Knov = 0.0;
 	//variaveis para Textfield contar corretamente
 	int Wingc = 0;
 	int Ikalgoc = 0;
@@ -141,9 +141,9 @@ public class TelaPrincipal extends JFrame {
 				}else {
 					Suzhi++;
 					textSuzhi.setText(""+Suzhi);
-					enviatexto.setVisible(true);
-					enviatexto.setState(TelaErro.NORMAL);
-					enviatexto.recebe(textNen.getText());
+					Nen -= 10;
+					textNen.setText(String.valueOf(Nen));
+					
 				}
 			}
 		});
@@ -155,8 +155,18 @@ public class TelaPrincipal extends JFrame {
 		btnIkalgo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Ikalgoc++;
-				textIkalgo.setText(""+Ikalgoc);
+				if(Nen<150) {
+					
+					enviatexto = new TelaErro();
+					enviatexto.setVisible(true);
+					enviatexto.recebe(textNen.getText());
+				}else {
+					Ikalgoc++;
+					textIkalgo.setText(""+Ikalgoc);
+					Nen -= 150;
+					textNen.setText(String.valueOf(Nen));
+				}
+				
 			}
 		});
 		btnIkalgo.setToolTipText("Recebera + * 0,5  de Nen");
@@ -171,8 +181,18 @@ public class TelaPrincipal extends JFrame {
 		btnWing.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Wingc++;
-				textWing.setText(""+Wingc);
+				if(Nen<500) {
+					enviatexto = new TelaErro();
+					enviatexto.setVisible(true);
+					enviatexto.recebe(textNen.getText());
+				}else {
+					Wingc++;
+					textWing.setText(""+Wingc);
+					Nen -= 500;
+					textNen.setText(String.valueOf(Nen));
+					
+				}
+				
 			}
 		});
 		btnWing.setToolTipText("Recebera + * 0.80  de Nen");
@@ -185,14 +205,23 @@ public class TelaPrincipal extends JFrame {
 		btnLeorio.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+			
 			}
 		});
 		
 		btnLeorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Leorioc++;
-				textLeorio.setText(""+Leorioc);
+				if(Nen<1000) {
+					enviatexto = new TelaErro();
+					enviatexto.setVisible(true);
+					enviatexto.recebe(textNen.getText());
+				}else {
+					Leorioc++;
+					textLeorio.setText(""+Leorioc);
+					Nen -= 1000;
+					textNen.setText(String.valueOf(Nen));
+				
+				
 				if(!rodandoLeo) {
 					 rodandoLeo = true; 
 				tm = new Timer();
@@ -203,7 +232,7 @@ public class TelaPrincipal extends JFrame {
 						
 						if(contadorLeorio == 60) {
 							contadorLeorio = 0; // Esse if faz o cronometro reinicar quando chegar aos 1 MINUTO
-							Nen += 1000;
+							Nen += (1000*Leorioc);
 							 textNen.setText(String.valueOf(Nen)); // Atualiza automaticamente o valor de textNen
 						}
 						
@@ -214,6 +243,7 @@ public class TelaPrincipal extends JFrame {
 						}
 					}, 1000,1000); //tempo para cada segundo ( 1 milisegundos = 1 segundo )
 				}
+			  }
 			}
 		}
 		);
@@ -225,8 +255,16 @@ public class TelaPrincipal extends JFrame {
 		JButton btnCheetu = new JButton("Cheetu");
 		btnCheetu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Cheetuc++;
-				textCheetu.setText(""+Cheetuc);
+				if(Nen<100000) {
+					enviatexto = new TelaErro();
+					enviatexto.setVisible(true);
+					enviatexto.recebe(textNen.getText());
+				}else {
+					Cheetuc++;
+					textCheetu.setText(""+Cheetuc);
+					Nen -= 100000;
+					textNen.setText(String.valueOf(Nen));
+				
 				if(!rodandoChe) {
 					rodandoChe = true; 
 				tm = new Timer();
@@ -237,7 +275,7 @@ public class TelaPrincipal extends JFrame {
 						
 						if(contadorCheetu == 60) {
 							contadorCheetu = 0; // Esse if faz o cronometro reinicar quando chegar aos 1 MINUTO
-							Nen += 10000;
+							Nen += (10000*Cheetuc);
 							 textNen.setText(String.valueOf(Nen)); // Atualiza automaticamente o valor de textNen
 						}
 						
@@ -248,6 +286,7 @@ public class TelaPrincipal extends JFrame {
 						}
 					}, 1000,1000); //tempo para cada segundo ( 1 milisegundos = 1 segundo )
 				}
+			  }
 			}
 		});
 		
@@ -364,8 +403,16 @@ public class TelaPrincipal extends JFrame {
 		JButton btnKnov = new JButton("Knov");
 		btnKnov.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Knovc++;
-				textKnov.setText(""+Knovc);
+				if(Nen<500000) {
+					enviatexto = new TelaErro();
+					enviatexto.setVisible(true);
+					enviatexto.recebe(textNen.getText());
+				}else {
+					Knovc++;
+					textKnov.setText(""+Knovc);
+					Nen -= 500000;
+					textNen.setText(String.valueOf(Nen));
+					
 				if(!rodandoKnov) {
 					rodandoKnov = true; 
 				tm = new Timer();
@@ -376,7 +423,7 @@ public class TelaPrincipal extends JFrame {
 						
 						if(contadorKnov == 60) {
 							contadorKnov = 0; // Esse if faz o cronometro reinicar quando chegar aos 1 MINUTO
-							Nen += 50000;
+							Nen += (50000*Knovc);
 							 textNen.setText(String.valueOf(Nen)); // Atualiza automaticamente o valor de textNen
 						}
 						
@@ -387,7 +434,8 @@ public class TelaPrincipal extends JFrame {
 						}
 					}, 1000,1000); //tempo para cada segundo ( 1 milisegundos = 1 segundo )
 				}
-			}
+			  }
+			}	
 		});
 		btnKnov.setToolTipText("Recebera + 50000 por minuto de Nen");
 		btnKnov.setBounds(440, 404, 89, 23);
